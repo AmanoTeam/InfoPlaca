@@ -1,79 +1,48 @@
 from pyrogram import Client, filters
-from pyrogram.types import (
-        InlineKeyboardMarkup,
-        InlineKeyboardButton)
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from strin import donate, hlp
-
+from string import donate, hlp
 
 
 @Client.on_callback_query(filters.regex(r"donate"))
 async def etanod(c, m):
     keyboard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                            text="💵 PicPay", url="#"
-                    ),
-                  
-                    InlineKeyboardButton(
-                            text="💵 PayPal", url="#"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                            text="💵 Pix", callback_data="gpix"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                            text="◀️ Voltar", callback_data="help"
-                    )
-                ]
-            ]
-        )
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="💵 PicPay", url="#"),
+                InlineKeyboardButton(text="💵 PayPal", url="#"),
+            ],
+            [InlineKeyboardButton(text="💵 Pix", callback_data="gpix")],
+            [InlineKeyboardButton(text="◀️ Voltar", callback_data="help")],
+        ]
+    )
     await m.edit_message_text(donate, reply_markup=keyboard)
-
 
 
 @Client.on_callback_query(filters.regex(r"help"))
 async def pleh(c, m):
     keyvoard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                            text="💵 Colabore", callback_data="donate"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                            text="💻 Meu desenvolvedor", url="t.me/khaledsecond"
-                    )
-                ],
-                [
-                    InlineKeyboardButton(
-                            text="🔎 Consulte inline", switch_inline_query_current_chat=""
-                    )
-                ]
-            ]
-        )
+        inline_keyboard=[
+            [InlineKeyboardButton(text="💵 Colabore", callback_data="donate")],
+            [InlineKeyboardButton(text="💻 Meu desenvolvedor", url="t.me/khaledsecond")],
+            [
+                InlineKeyboardButton(
+                    text="🔎 Consulte inline", switch_inline_query_current_chat=""
+                )
+            ],
+        ]
+    )
     await m.edit_message_text(hlp, reply_markup=keyvoard)
-
 
 
 @Client.on_callback_query(filters.regex(r"gpix"))
 async def xipg(c, m):
     keybaard = InlineKeyboardMarkup(
-            inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                            text="🗑 Apagar mensagem", callback_data="delete"
-                    )
-                ]
-            ]
-        )
+        inline_keyboard=[
+            [InlineKeyboardButton(text="🗑 Apagar mensagem", callback_data="delete")]
+        ]
+    )
     await c.send_photo(m.message.chat.id, photo="#", caption="#", reply_markup=keybaard)
-    
 
 
 @Client.on_callback_query(filters.regex(r"delete"))
