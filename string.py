@@ -2,7 +2,6 @@
 strt = """Digite a placa ou clique no botão abaixo."""
 
 
-
 # HELP COMMAND
 hlp = """Olá 👋, aqui é a área de ajuda do <b>InfoPlaca</b>.
 
@@ -19,12 +18,10 @@ O uso também pode ser via inline, digite: <code>@InfoPlacaBot PLACA</code> no c
 🤖 Quer colaborar nossos projetos? Clique no botão abaixo e apoie o meu desenvolvimento!"""
 
 
-
 # DONATE COMMAND
 donate = """Ajude no desenvolvimento e manutenção de nossos projetos. 
 
 Qualquer valor nos ajuda! 👋🤖"""
-
 
 
 # TEMPLATE TO INSERT REQUEST INFO
