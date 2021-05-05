@@ -10,4 +10,4 @@ See <a href="https://t.me/infoplacabot">@InfoPlacaBot</a>
 # Usage
 
 - Inline: <code>@InfoPlacaBot PLACA</code>
-- In chat: just send the plate on the convertinal format or MERCOSUL format.
+- In chat: just send the plate on the convertional format or MERCOSUL format.
