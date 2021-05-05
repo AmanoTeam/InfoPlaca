@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent
 
-from string import template
+from bot_strings import template
 from configs import PROXY
 from datetime import datetime as l
 
