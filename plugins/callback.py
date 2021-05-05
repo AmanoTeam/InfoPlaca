@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from string import donate, hlp
+from bot_strings import donate, hlp
 
 
 @Client.on_callback_query(filters.regex(r"donate"))
