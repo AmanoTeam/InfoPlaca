@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from string import strt, hlp
+from bot_strings import strt, hlp
 from daba import add_user
 
 
