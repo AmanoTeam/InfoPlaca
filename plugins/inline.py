@@ -21,7 +21,7 @@ async def inline(c, m):
         g = re.sub(r"([a-zA-Z]+)[- ]?(\d+)", r"\1-\2", f).upper()
         with httpx.Client(proxies=PROXY) as cli:
             h = cli.get(
-                f"http://api.masterplaca.devplank.com/v51/placa/{f}/json"
+                f"#"
             ).json()
 
         if h["codigoRetorno"] == 98:
@@ -75,7 +75,7 @@ async def inline(c, m):
         plac = array_pl.group(1)
         p = re.sub("[^a-zA-Z0-9]", "", plac)
         with httpx.Client(proxies=PROXY) as cl:
-            q = cl.get(f"http://api.masterplaca.devplank.com/v51/placa/{p}/json").json()
+            q = cl.get(f"#").json()
 
         if q["codigoRetorno"] == 98:
             await m.answer(
