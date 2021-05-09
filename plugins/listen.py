@@ -17,17 +17,17 @@ async def listen(c, m):
     r = q.group(1)
     s = re.sub("[^a-zA-Z0-9]", "", r).upper()
     with httpx.Client(proxies=PROXY) as cli:
-        v = cli.get(f"http://api.masterplaca.devplank.com/v51/placa/{s}/json").json()
+        v = cli.get(f"#").json()
 
     if v["codigoRetorno"] == 98:
         await m.reply_text(
-            "⚠️ <b>{}.</b>".format(v["mensagemRetorno"]), quote=True, parse_mode="HTML"
+            f"⚠️ <b>{v['mensagemRetorno']}.</b>", quote=True, parse_mode="HTML"
         )
 
     else:
         await m.reply_text(
             template.format(
-                l.now().strftime("%d/%m/%Y ás %H:%M:%S"),
+                l.now().strftime("%d/%m/%Y às %H:%M:%S"),
                 s,
                 v["chassi"],
                 v["modelo"],
