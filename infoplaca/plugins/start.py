@@ -1,16 +1,13 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from bot_strings import strt, hlp
-from daba import add_user
-
-
-
+from ..bot_strings import hlp, strt
+from ..database import add_user
 
 
 # START COMMAND
 @Client.on_message(filters.command("start", ["/", "!"]))
-async def start(c, m):
+async def start(c: Client, m: Message):
     add_user(user_id=m.from_user.id)
     keybaard = InlineKeyboardMarkup(
         inline_keyboard=[
@@ -26,7 +23,7 @@ async def start(c, m):
 
 # HELP COMMAND
 @Client.on_message(filters.command("help", ["/", "!"]))
-async def help(c, m):
+async def help(c: Client, m: Message):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(text="💵 Colabore", callback_data="donate")],

@@ -19,7 +19,7 @@ O uso também pode ser via inline, digite: <code>@InfoPlacaBot PLACA</code> no c
 
 
 # DONATE COMMAND
-donate = """Ajude no desenvolvimento e manutenção de nossos projetos. 
+donate = """Ajude no desenvolvimento e manutenção de nossos projetos.
 
 Qualquer valor nos ajuda! 👋🤖"""
 

@@ -1,0 +1,10 @@
+# Bot token from Bot Father
+TOKEN: str = "123123:YOUR_BOT_TOKEN_HERE"
+
+# Telegram API ID and API hash
+# Get it from https://my.telegram.org/apps
+API_ID: int = 321321
+API_HASH: str = "YOUR_API_HASH_HERE"
+
+# API endpoint to get plate info
+PLATES_ENDPOINT: str = "https://infoplaca-api.amanoteam.com/{plate}"
