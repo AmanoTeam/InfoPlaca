@@ -47,4 +47,4 @@ async def xipg(c: Client, m: CallbackQuery):
 
 @Client.on_callback_query(filters.regex(r"delete"))
 async def eteled(c: Client, m: CallbackQuery):
-    await c.delete_messages(m.message.chat.id, m.message.message_id)
+    await c.delete_messages(m.message.chat.id, m.message.id)
