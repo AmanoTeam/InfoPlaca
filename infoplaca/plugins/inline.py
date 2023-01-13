@@ -14,12 +14,12 @@ from pyrogram.types import (
 from config import PLATES_ENDPOINT
 
 from ..bot_strings import template
-from ..utils import PLATE_REGEX, hc
+from ..utils import PLATE_REGEX, format_plate, hc
 
 
 @Client.on_inline_query(filters.regex(PLATE_REGEX))
 async def plate_search_inline(c: Client, m: InlineQuery):
-    plate: str = m.matches[0].group(1).upper()
+    plate: str = m.matches[0].group(1).upper().replace("-", "")
 
     try:
         r = await hc.get(PLATES_ENDPOINT.format(plate=plate))
@@ -66,13 +66,13 @@ async def plate_search_inline(c: Client, m: InlineQuery):
         await m.answer(
             [
                 InlineQueryResultArticle(
-                    title=f"Resultado para: {plate.upper()}",
+                    title=f"Resultado para: {format_plate(plate)}",
                     thumb_url="https://piics.ml/i/015.png",
                     input_message_content=InputTextMessageContent(
                         str(
                             template.format(
                                 l.now().strftime("%d/%m/%Y às %H:%M:%S"),
-                                plate.upper(),
+                                format_plate(plate),
                                 rjson["chassi"],
                                 rjson["modelo"],
                                 rjson["cor"].upper(),

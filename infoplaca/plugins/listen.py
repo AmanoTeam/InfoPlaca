@@ -7,12 +7,12 @@ from pyrogram.types import Message
 from config import PLATES_ENDPOINT
 
 from ..bot_strings import template
-from ..utils import PLATE_REGEX, hc
+from ..utils import PLATE_REGEX, format_plate, hc
 
 
 @Client.on_message(filters.regex(PLATE_REGEX) & ~filters.via_bot)
 async def plate_search(c: Client, m: Message):
-    plate: str = m.matches[0].group(1).upper()
+    plate: str = m.matches[0].group(1).upper().replace("-", "")
 
     try:
         r = await hc.get(PLATES_ENDPOINT.format(plate=plate))
@@ -31,7 +31,7 @@ async def plate_search(c: Client, m: Message):
         await m.reply_text(
             template.format(
                 l.now().strftime("%d/%m/%Y às %H:%M:%S"),
-                plate,
+                format_plate(plate),
                 rjson["chassi"],
                 rjson["modelo"],
                 rjson["cor"].upper(),
