@@ -10,7 +10,7 @@ from ..bot_strings import template
 from ..utils import PLATE_REGEX, hc
 
 
-@Client.on_message(filters.regex(PLATE_REGEX))
+@Client.on_message(filters.regex(PLATE_REGEX) & ~filters.via_bot)
 async def plate_search(c: Client, m: Message):
     plate: str = m.matches[0].group(1).upper()
 

@@ -25,7 +25,7 @@ Qualquer valor nos ajuda! 👋🤖"""
 
 
 # TEMPLATE TO INSERT REQUEST INFO
-template = """ℹ <b>Informações da Placa</b>
+template = """ℹ️ <b>Informações da Placa</b>
 📆 <i>{}</i>
 
 <b>Placa:</b> <code>{}</code>
