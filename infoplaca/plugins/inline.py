@@ -69,19 +69,17 @@ async def plate_search_inline(c: Client, m: InlineQuery):
                     title=f"Resultado para: {format_plate(plate)}",
                     thumb_url="https://piics.ml/i/015.png",
                     input_message_content=InputTextMessageContent(
-                        str(
-                            template.format(
-                                l.now().strftime("%d/%m/%Y às %H:%M:%S"),
-                                format_plate(plate),
-                                rjson["chassi"],
-                                rjson["modelo"],
-                                rjson["cor"].upper(),
-                                rjson["ano"],
-                                rjson["municipio"].upper(),
-                                rjson["uf"],
-                                rjson["situacao"],
-                            )
-                        ),
+                        template.format(
+                            l.now().strftime("%d/%m/%Y às %H:%M:%S"),
+                            format_plate(plate),
+                            rjson["chassi"].rjust(17, "*"),
+                            rjson["modelo"],
+                            rjson["cor"].upper(),
+                            rjson["ano"],
+                            rjson["municipio"].upper(),
+                            rjson["uf"],
+                            rjson["situacao"],
+                        )
                     ),
                 )
             ]

@@ -32,7 +32,7 @@ async def plate_search(c: Client, m: Message):
             template.format(
                 l.now().strftime("%d/%m/%Y às %H:%M:%S"),
                 format_plate(plate),
-                rjson["chassi"],
+                rjson["chassi"].rjust(17, "*"),
                 rjson["modelo"],
                 rjson["cor"].upper(),
                 rjson["ano"],

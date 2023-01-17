@@ -29,7 +29,7 @@ template = """ℹ️ <b>Informações da Placa</b>
 📆 <i>{}</i>
 
 <b>Placa:</b> <code>{}</code>
-<b>Chassi:</b> <code>***{}</code>
+<b>Chassi:</b> <code>{}</code>
 <b>Modelo:</b> <code>{}</code>
 <b>Cor:</b> <code>{}</code>
 <b>Ano:</b> <code>{}</code>
