@@ -14,3 +14,28 @@ def format_plate(plate: str) -> str:
     if groups[2].isnumeric():
         return f"{groups[1]}-{groups[2]}"
     return f"{groups[1]}{groups[2]}"
+
+
+def format_plate_info(info: dict) -> str:
+    return """ℹ️ <b>Informações da Placa</b>
+📆 <i>Informações atualizadas em {}</i>
+
+<b>Placa:</b> <code>{}</code>
+<b>Chassi:</b> <code>{}</code>
+<b>Modelo:</b> <code>{}</code>
+<b>Cor:</b> <code>{}</code>
+<b>Ano:</b> <code>{}</code>
+<b>Cidade:</b> <code>{} - {}</code>
+<b>Situação:</b> <code>{}</code>
+
+@InfoPlacaBot""".format(
+        info["data"],
+        format_plate(info["placa"]),
+        info["chassi"].rjust(17, "*") if info["chassi"] else "Não informado",
+        info["modelo"].title(),
+        info["cor"].title(),
+        info["ano"],
+        info["municipio"].title(),
+        info["uf"],
+        info["situacao"],
+    )

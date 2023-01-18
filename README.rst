@@ -10,4 +10,4 @@ Usage
 -----
 
 -  Inline: ``@InfoPlacaBot PLACA``
--  In chat: just send the plate on the MERCOSUL or legacy formats.
+-  In chat: just send the plate on the Mercosul or legacy formats.

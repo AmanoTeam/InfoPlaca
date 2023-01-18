@@ -1,8 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
 
-from ..bot_strings import donate, hlp
-
 
 @Client.on_callback_query(filters.regex(r"donate"))
 async def etanod(c: Client, m: CallbackQuery):
@@ -16,23 +14,12 @@ async def etanod(c: Client, m: CallbackQuery):
             [InlineKeyboardButton(text="◀️ Voltar", callback_data="help")],
         ]
     )
-    await m.edit_message_text(donate, reply_markup=keyboard)
+    await m.edit_message_text(
+        """Ajude no desenvolvimento e manutenção de nossos projetos.
 
-
-@Client.on_callback_query(filters.regex(r"help"))
-async def pleh(c: Client, m: CallbackQuery):
-    keyvoard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [InlineKeyboardButton(text="💵 Colabore", callback_data="donate")],
-            [InlineKeyboardButton(text="💻 Meu desenvolvedor", url="t.me/khaledsecond")],
-            [
-                InlineKeyboardButton(
-                    text="🔎 Consulte inline", switch_inline_query_current_chat=""
-                )
-            ],
-        ]
+Qualquer valor nos ajuda! 👋🤖""",
+        reply_markup=keyboard,
     )
-    await m.edit_message_text(hlp, reply_markup=keyvoard)
 
 
 @Client.on_callback_query(filters.regex(r"gpix"))

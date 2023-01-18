@@ -1,13 +1,10 @@
-from datetime import datetime as l
-
 import httpx
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
 from config import PLATES_ENDPOINT
 
-from ..bot_strings import template
-from ..utils import PLATE_REGEX, format_plate, hc
+from ..utils import PLATE_REGEX, format_plate_info, hc
 
 
 @Client.on_message(filters.regex(PLATE_REGEX) & ~filters.via_bot)
@@ -28,17 +25,4 @@ async def plate_search(c: Client, m: Message):
         await m.reply_text(f"⚠️ <b>{rjson['mensagemRetorno']}.</b>", quote=True)
 
     else:
-        await m.reply_text(
-            template.format(
-                l.now().strftime("%d/%m/%Y às %H:%M:%S"),
-                format_plate(plate),
-                rjson["chassi"].rjust(17, "*") if rjson["chassi"] else "Não informado",
-                rjson["modelo"],
-                rjson["cor"].upper(),
-                rjson["ano"],
-                rjson["municipio"].upper(),
-                rjson["uf"],
-                rjson["situacao"],
-            ),
-            quote=True,
-        )
+        await m.reply_text(format_plate_info(rjson), quote=True)

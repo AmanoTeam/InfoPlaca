@@ -1,6 +1,3 @@
-import re
-from datetime import datetime as l
-
 import httpx
 from pyrogram import Client, filters
 from pyrogram.types import (
@@ -13,8 +10,7 @@ from pyrogram.types import (
 
 from config import PLATES_ENDPOINT
 
-from ..bot_strings import template
-from ..utils import PLATE_REGEX, format_plate, hc
+from ..utils import PLATE_REGEX, format_plate, format_plate_info, hc
 
 
 @Client.on_inline_query(filters.regex(PLATE_REGEX))
@@ -69,19 +65,7 @@ async def plate_search_inline(c: Client, m: InlineQuery):
                     title=f"Resultado para: {format_plate(plate)}",
                     thumb_url="https://piics.ml/i/015.png",
                     input_message_content=InputTextMessageContent(
-                        template.format(
-                            l.now().strftime("%d/%m/%Y às %H:%M:%S"),
-                            format_plate(plate),
-                            rjson["chassi"].rjust(17, "*")
-                            if rjson["chassi"]
-                            else "Não informado",
-                            rjson["modelo"],
-                            rjson["cor"].upper(),
-                            rjson["ano"],
-                            rjson["municipio"].upper(),
-                            rjson["uf"],
-                            rjson["situacao"],
-                        )
+                        format_plate_info(rjson)
                     ),
                 )
             ]
