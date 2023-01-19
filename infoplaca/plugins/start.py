@@ -1,3 +1,5 @@
+from typing import Union
+
 from pyrogram import Client, filters
 from pyrogram.types import (
     CallbackQuery,
@@ -13,7 +15,7 @@ from ..database import add_user
 @Client.on_message(filters.command("start", ["/", "!"]))
 async def start(c: Client, m: Message):
     add_user(user_id=m.from_user.id)
-    keybaard = InlineKeyboardMarkup(
+    keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
@@ -23,15 +25,17 @@ async def start(c: Client, m: Message):
         ]
     )
     await m.reply_text(
-        "Digite a placa ou clique no botão abaixo.", reply_markup=keybaard
+        "Digite a placa ou clique no botão abaixo.", reply_markup=keyboard
     )
 
 
 # HELP COMMAND
-@Client.on_message(filters.command("help", ["/", "!"]))
 @Client.on_callback_query(filters.regex(r"help"))
-async def pleh(c: Client, m: CallbackQuery):
-    keyvoard = InlineKeyboardMarkup(
+@Client.on_message(filters.command("help", ["/", "!"]))
+async def pleh(c: Client, m: Union[CallbackQuery, Message]):
+    send = m.edit_message_text if isinstance(m, CallbackQuery) else m.reply_text
+
+    keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [InlineKeyboardButton(text="💵 Colabore", callback_data="donate")],
             [
@@ -47,7 +51,7 @@ async def pleh(c: Client, m: CallbackQuery):
         ]
     )
 
-    await m.edit_message_text(
+    await send(
         """Olá 👋, aqui é a área de ajuda do <b>InfoPlaca</b>.
 
 ℹ️ <b>Informações básicas:</b>
@@ -60,5 +64,5 @@ O uso também pode ser via inline, digite: <code>@InfoPlacaBot PLACA</code> no c
 
 
 🤖 Quer colaborar nossos projetos? Clique no botão abaixo e apoie o meu desenvolvimento!""",
-        reply_markup=keyvoard,
+        reply_markup=keyboard,
     )

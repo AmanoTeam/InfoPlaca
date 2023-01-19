@@ -74,6 +74,17 @@ async def plate_search_inline(c: Client, m: InlineQuery):
 
 @Client.on_inline_query()
 async def empty_inline(c: Client, m: InlineQuery):
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(
+                    text="🔎 Consulte inline",
+                    switch_inline_query_current_chat="",
+                )
+            ]
+        ]
+    )
+
     await m.answer(
         [
             InlineQueryResultArticle(
@@ -82,16 +93,7 @@ async def empty_inline(c: Client, m: InlineQuery):
                 input_message_content=InputTextMessageContent(
                     message_text="🔎 <b>Insira uma placa para consultar via inline</b>",
                 ),
-                reply_markup=InlineKeyboardMarkup(
-                    inline_keyboard=[
-                        [
-                            InlineKeyboardButton(
-                                text="🔎 Consulte inline",
-                                switch_inline_query_current_chat="",
-                            )
-                        ]
-                    ]
-                ),
+                reply_markup=keyboard,
             )
         ],
         cache_time=0,
