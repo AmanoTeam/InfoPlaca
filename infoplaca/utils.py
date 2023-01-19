@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 import httpx
 
@@ -17,6 +18,11 @@ def format_plate(plate: str) -> str:
 
 
 def format_plate_info(info: dict) -> str:
+    try:
+        date = datetime.fromisoformat(info["data"]).strftime("%d/%m/%Y às %H:%M:%S")
+    except ValueError:
+        date = info["data"]
+
     return """ℹ️ <b>Informações da Placa</b>
 📆 <i>Informações atualizadas em {}</i>
 
@@ -29,7 +35,7 @@ def format_plate_info(info: dict) -> str:
 <b>Situação:</b> <code>{}</code>
 
 @InfoPlacaBot""".format(
-        info["data"],
+        date,
         format_plate(info["placa"]),
         info["chassi"].rjust(17, "*") if info["chassi"] else "Não informado",
         info["modelo"].title(),
