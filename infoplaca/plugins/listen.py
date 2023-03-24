@@ -21,8 +21,8 @@ async def plate_search(c: Client, m: Message):
         )
         return
 
-    if rjson["codigoRetorno"] == 98:
-        await m.reply_text(f"⚠️ <b>{rjson['mensagemRetorno']}.</b>", quote=True)
+    if rjson["error"]:
+        await m.reply_text(f"⚠️ <b>{rjson['message']}</b>", quote=True)
 
     else:
         await m.reply_text(format_plate_info(rjson), quote=True)

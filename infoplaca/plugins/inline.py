@@ -45,14 +45,14 @@ async def plate_search_inline(c: Client, m: InlineQuery):
         )
         return
 
-    if rjson["codigoRetorno"] == 98:
+    if rjson["error"]:
         await m.answer(
             [
                 InlineQueryResultArticle(
-                    title=f"⚠️ {rjson['mensagemRetorno']}",
+                    title=f"⚠️ {rjson['message']}",
                     thumb_url="https://piics.ml/i/015.png",
                     input_message_content=InputTextMessageContent(
-                        message_text=f"⚠️ <b>{rjson['mensagemRetorno']}.</b>",
+                        message_text=f"⚠️ <b>{rjson['message']}</b>",
                     ),
                 )
             ]
