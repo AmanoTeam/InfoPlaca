@@ -30,7 +30,7 @@ def format_plate_info(info: dict) -> str:
 <b>Chassi:</b> <code>{}</code>
 <b>Modelo:</b> <code>{}</code>
 <b>Cor:</b> <code>{}</code>
-<b>Ano:</b> <code>{}</code>
+<b>Ano/Modelo:</b> <code>{}/{}</code>
 <b>Cidade:</b> <code>{} - {}</code>
 <b>Situação:</b> <code>{}</code>
 
@@ -41,6 +41,7 @@ def format_plate_info(info: dict) -> str:
         info["modelo"].title(),
         info["cor"].title(),
         info["ano"],
+        info["anoModelo"],
         info["municipio"].title(),
         info["uf"],
         info["situacao"],
